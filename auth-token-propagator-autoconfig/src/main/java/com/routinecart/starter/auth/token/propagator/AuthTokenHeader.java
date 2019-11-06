@@ -5,5 +5,5 @@ public final class AuthTokenHeader {
     private AuthTokenHeader() {
     }
 
-    public static final String AUTH_TOKEN_HEADER = "Authentication";
+    public static final String AUTH_TOKEN_HEADER = "Authorization";
 }
