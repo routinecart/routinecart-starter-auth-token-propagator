@@ -4,9 +4,12 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-import static com.routinecart.starter.auth.token.propagator.RequestAuthTokenHeader.REQUEST_AUTH_TOKEN_HEADER;
+import static com.routinecart.starter.auth.token.propagator.AuthTokenContextHolder.resetAuthTokenContextHolder;
+import static com.routinecart.starter.auth.token.propagator.AuthTokenContextHolder.setAuthTokenContextHolder;
+import static com.routinecart.starter.auth.token.propagator.AuthTokenHeader.AUTH_TOKEN_HEADER;
 
-public class RequestAuthTokenPropagatorFilter implements Filter {
+public class AuthTokenPropagatorFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) {
 
@@ -16,12 +19,12 @@ public class RequestAuthTokenPropagatorFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        String requestAuthToken = httpServletRequest.getHeader(REQUEST_AUTH_TOKEN_HEADER);
+        String requestAuthToken = httpServletRequest.getHeader(AUTH_TOKEN_HEADER);
         try {
-            RequestAuthTokenHeaderContextHolder.setRequestAuthTokenHeader(requestAuthToken);
+            setAuthTokenContextHolder(requestAuthToken);
             chain.doFilter(request, response);
         } finally {
-            RequestAuthTokenHeaderContextHolder.resetRequestAuthTokenHeader();
+            resetAuthTokenContextHolder();
         }
     }
 
