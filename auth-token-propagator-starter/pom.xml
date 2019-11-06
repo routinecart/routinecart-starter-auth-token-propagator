@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>starter</artifactId>
+    <artifactId>auth-token-propagator-starter</artifactId>
 
 
 </project>
