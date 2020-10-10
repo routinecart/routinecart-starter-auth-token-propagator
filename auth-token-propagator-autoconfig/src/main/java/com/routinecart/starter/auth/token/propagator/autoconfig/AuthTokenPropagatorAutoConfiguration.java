@@ -19,7 +19,7 @@ public class AuthTokenPropagatorAutoConfiguration {
     }
 
     @Bean
-    public AuthTokenPropagatorInterceptor authTokenPropagatorInterceptorm() {
+    public AuthTokenPropagatorInterceptor authTokenPropagatorInterceptor() {
         return new AuthTokenPropagatorInterceptor();
     }
 }
